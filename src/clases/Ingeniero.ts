@@ -1,16 +1,20 @@
-import { IJugar } from "./IJugar";
-import { Persona } from "./Persona";
+import { IJugar } from "./IJugar.js";
+import { Persona } from "./Persona.js";
+import { faker } from "@faker-js/faker";
 
 export class Ingeniero extends Persona implements IJugar {
     private _numEdificiosConstruidos: number;
 
-    constructor(
-        nombre: string,
-        edad: number,
-        esHombre: boolean,
-        numEdificiosConstruidos: number
-    ) {
-        super(nombre, edad, esHombre);
+    constructor() {
+        const nombre = faker.name.firstName();
+        const apellido = faker.name.lastName();
+        const edad = faker.datatype.number({ min: 18, max: 50 });
+        const esHombre = faker.datatype.boolean();
+        const numEdificiosConstruidos = faker.datatype.number({
+            min: 1,
+            max: 20,
+        });
+        super(nombre, apellido, edad, esHombre);
         this._numEdificiosConstruidos = numEdificiosConstruidos;
     }
 
